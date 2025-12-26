@@ -6,7 +6,7 @@ from settings import debug
 class C(BaseConstants):
     NAME_IN_URL = 'phase2'
     PLAYERS_PER_GROUP = 2 if debug else 6
-    NUM_ROUNDS = 5 if debug else 10
+    NUM_ROUNDS = 3 if debug else 10
     Winner_Reward = 100
     reasoning_rounds = [1, 3, 5] if debug else [1, 5, 10]
 

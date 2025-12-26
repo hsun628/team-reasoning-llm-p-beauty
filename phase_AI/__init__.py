@@ -2,41 +2,45 @@ from otree.api import *
 from openai import OpenAI
 import random
 
-client = OpenAI(api_key = "API_KEY")
+my_api_key = "API_KEY"
+model_used = "gpt-5"
+
+
+client = OpenAI(api_key = my_api_key)
 
 class Group(BaseGroup):
-    gpt_reason = models.LongStringField() # 儲存 GPT 生成的理由
-    winner_type = models.StringField()    # 紀錄是 'Human' 還是 'AI' 贏了
+    gpt_reason = models.LongStringField() 
+    winner_type = models.StringField() 
 
-def call_gpt_generate(prompt_text):
-    """根據指令生成 AI 理由"""
+def gpt_generate(participant_decision):
+    generate_prompt = "prompt"
+
     response = client.chat.completions.create(
-        model="gpt-4o",
-        messages=[{"role": "user", "content": f"請根據以下情境生成一個決策理由：{prompt_text}"}]
+        model = model_used,
+        messages = [
+            {"role": "system", "content": generate_prompt},
+            {"role": "user", "content": f"請針對以下受試者決策數字和實驗說明生成一個做出此決策的理由：{participant_decision}"}]
     )
     return response.choices[0].message.content
 
-def call_gpt_judge(reason_a, reason_b):
-    """擔任評審，判斷哪一個理由較清楚"""
-    # 這裡使用隨機順序餵給 GPT，確保它不知道誰是玩家
+def gpt_judge(reason_a, reason_b):
     reasons = [("A", reason_a), ("B", reason_b)]
     random.shuffle(reasons)
     
-    prompt = f"""
+    judge_prompt = f"""
     以下有兩個決策理由，請忽略其來源，僅針對『邏輯清晰度』與『說服力』進行評分。
     理由 1: {reasons[0][1]}
     理由 2: {reasons[1][1]}
-    請僅回答『理由 1』或『理由 2』哪一個更好，並給出一個簡短原因。
+    請僅回答『理由 1』或『理由 2』。
     """
     
     response = client.chat.completions.create(
         model="gpt-4o",
-        messages=[{"role": "system", "content": "你是一個公正的實驗評審。"},
-                  {"role": "user", "content": prompt}]
+        messages=[{"role": "system", "content": judge_prompt},
+                  {"role": "user", "content": 請選擇你認為較清楚地說明決策思考過程的理由。請僅回答『理由 1』或『理由 2』。}]
     )
     result = response.choices[0].message.content
     
-    # 根據 GPT 的回答判定是 A 還是 B 贏
     if "理由 1" in result:
         return "Human" if reasons[0][0] == "A" else "AI"
     else:
