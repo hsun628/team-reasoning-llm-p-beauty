@@ -1,0 +1,23 @@
+{% extends "global/Page.html" %}
+
+{% block content %}
+<h3 class="mb-4"><b>預測結果</b></h3>
+
+<p>您的預測是：</p>
+
+    <div style="text-align: center; margin: 20px;">
+        {% if player.prediction == 'A' %}
+            <div class="result-box">
+                <img src="{{ static 'cat.jpg' }}" style="width: 300px; border: 5px solid #007bff; border-radius: 10px;">
+            </div>
+        {% elif player.prediction == 'B' %}
+            <div class="result-box">
+                <img src="{{ static 'dog.jpg' }}" style="width: 300px; border: 5px solid #007bff; border-radius: 10px;">
+            </div>
+        {% endif %}
+    </div>
+
+<p>這回合您的報酬是：{{ player.payoff }} 法幣</p>
+
+    {% next_button %}
+{% endblock %}
