@@ -37,6 +37,24 @@ class Player(BasePlayer):
 
 from otree.api import *
 
+class welcome(Page):
+    @staticmethod
+    def is_displayed(player):
+        return player.round_number == 1
+    
+class Phase1StartWaitPage(WaitPage):
+    title_text = "請等待其他受試者完成準備"
+
+    wait_for_all_groups = True
+
+    @staticmethod
+    def is_displayed(player):
+        return player.round_number == 1
+
+class Prediction(Page):
+    form_model = 'player'
+    form_fields = ['prediction']
+
 class Prediction(Page):
     form_model = 'player'
     form_fields = ['prediction']
@@ -53,6 +71,8 @@ class ResultsWaitPage(WaitPage):
     title_text = "請等待其他受試者確認結果"
 
 page_sequence = [
+    welcome,
+    Phase1StartWaitPage,
     Prediction,
     PredictionWaitPage,
     Results,

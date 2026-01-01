@@ -41,20 +41,22 @@ def gpt_judge(reason_a, reason_b):
     以下有兩個決策理由，請忽略其來源，僅針對『邏輯清晰度』與『說服力』進行評分。
     理由 1: {reasons[0][1]}
     理由 2: {reasons[1][1]}
-    請僅回答『理由 1』或『理由 2』。
+    請僅回答『理由1』或『理由2』。
     """
     
     response = client.chat.completions.create(
         model="gpt-4o",
         messages=[{"role": "system", "content": judge_prompt},
-                  {"role": "user", "content": "請選擇你認為較清楚地說明決策思考過程的理由。請僅回答『理由 1』或『理由 2』。"}]
+                  {"role": "user", "content": "請選擇你認為較清楚地說明決策思考過程的理由。請僅回答『理由1』或『理由2』。"}]
     )
     result = response.choices[0].message.content
     
-    if "理由 1" in result:
+    if "理由1" in result:
         return "Human" if reasons[0][0] == "A" else "AI"
-    else:
+    elif "理由2" in result:
         return "AI" if reasons[0][0] == "A" else "Human"
+    else:
+        return random.choice(["Human", "AI"]) # in case of responses not follwoing instructions
 
 def set_payoffs(group: Group):
     if group.round_number in C.reasoning_rounds:
