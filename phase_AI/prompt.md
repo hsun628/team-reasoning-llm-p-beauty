@@ -16,10 +16,19 @@
 
 ##### 判斷時嚴禁考量以下面向：
 
-- **禁止根據決策的「勝算」或「優劣」來評分**：即使受試者的推論出現計算錯誤，或其決策是勝率極低的，只要他能清楚且邏輯一致地交代他為何這樣想，該理由就應獲得較高評價。請注意：你的任務是評估「哪一位受試者更具體地說明其決策「背後的想法」和「使用的資訊」」，而非「決策的聰明程度」。
+- **禁止根據決策的「勝算」或「優劣」來評分**：即使受試者的推論出現計算錯誤，或其決策是勝率極低的，只要他能清楚且邏輯一致地交代他為何這樣想，該理由就應獲得較高評價。
+- **請注意**：你的任務是評估「哪一位受試者更具體地說明其決策「背後的想法」和「使用的資訊」」，而非「決策的聰明程度」。
+- **理由字數**：請勿以字數判斷理由是否具體、詳細。(例如：「因為我觀察到 A，所以我預期 B，故決定採取 C 策略」和「在我的仔細觀察下，我發現 Ａ，所以我期望大家會做出 B，因此我決定採取 C策略，以增加我的勝率」，兩者所敘述的內容一致，應獲得相同、相近的評價)
 
 ##### 回覆格式：
 請回覆哪一位受試者更具體地說明其決策「背後的想法」和「使用的資訊」，並簡述原因。(若兩者非常接近，請回覆平手。)
+
+##### 該場實驗說明：
+本實驗共一回合。實驗開始前，電腦將隨機將您與另一位受試者配對進行以下實驗。
+    所有受試者都將獨立在指定的地圖上選擇一個座標為 (X,Y) 的位置(地圖上共有7x7格)。您的報酬將取決於您選擇的位置與您的「目標位置」有多接近，此目標位置將會是相對於「另一位受試者選擇的位置」的某個位置。假設您選擇的位置正好是您的目標位置，那麼您可以得到24元法幣的報酬。但您選擇的位置每偏離您的目標位置一格，您的報酬將會減少1元法幣。也就是說您這回合的報酬將是24元法幣，減去你偏離的方格數目。 
+    舉例來說，若在某一回合中，您這組的目標位置是 (1,4) ，而您這組選擇的位置是 (3,2)，那麼您的報酬將是： 24 - |3-1| - |2-4| = 20
+    **請注意**：您這組的目標位置可能不在地圖內，因此您不一定可以得到24元法幣的報酬。
+
 
 ---
 
@@ -42,8 +51,13 @@ Compare the reasons provided by the following two participants. Determine which 
 * **Do NOT judge based on the "quality" or "winning probability" of the decision:** Even if the participant's reasoning contains calculation errors or the decision itself has a very low probability of winning, as long as they clearly and logically explain their thought process, that reason should receive a higher evaluation. 
 * **Note:** Your mission is to evaluate "who more specifically explained their underlying thoughts and information used," NOT "how smart the decision was."
 
+* **Reasoning Length**: Do not judge the specificity or detail of a reason based on its word count. (For example: "Because I observed A, I expected B, and therefore adopted strategy C" and "Under my careful observation, I discovered A, so I expect others to do B; consequently, I decided to adopt strategy C to increase my winning probability" describe the same content. They should receive the same or very similar evaluation).
+
 ##### Response Format:
 Please state in Mandarin which participant more specifically explained their "underlying thoughts" and "information used," and briefly provide the reasons for your judgment. (If the two are extremely close, you may declare a tie).
+
+##### Experimental instruction:
+
 
 ---
 
@@ -52,11 +66,11 @@ Please state in Mandarin which participant more specifically explained their "un
 - **字數限制**：25-45字(不含標點符號、數字)
 - **prompt**: 
   - **角色設定**：你是一個參加經濟學實驗的大學生，你的任務是為某個特定決策寫下其決策理由。
-  - **任務**：你將以下實驗中受試者的決策，請根據該決策寫下一段25-45字的理由說明該決策背後的想法和使用的資訊。該場實驗規則如下：
+  - **任務**：你將看到以下實驗中受試者的決策，請根據該決策寫下一段25-45字的理由說明該決策背後的想法和使用的資訊。該場實驗規則如下：
     - **實驗規則**：第二部分共有10回合。一開始電腦隨機將所有受試者平分為2組進行此部分實驗。
   每回合您需選擇一個介於0到100的整數。同組所有受試者選的數字取平均稱為「平均數字」。最接近該平均數字的三分之二（稱為「目標數字」），為該回合的贏家。若有多人平手時，則電腦將隨機選擇一位為贏家。 
   每回合決策開始前，電腦將公布：您這組過去的平均數字和目標數字。
-- **回覆格式**：請回覆該受試者的決策以及你寫下的理由。你的回覆應依照以下格式：
+  - **回覆格式**：請回覆該受試者的決策以及你寫下的理由。你的回覆應依照以下格式：
   該受試者的決策：[x] 
   決策理由：[...]
 
@@ -74,3 +88,15 @@ Please state in Mandarin which participant more specifically explained their "un
 * **Response Format**: Please provide the participant's decision and the reasoning you have written. Your response must follow this format:
     * Participant's Decision: [x]
     * Reasoning: [...]
+
+---
+
+ - **角色設定**：你是一個參加經濟學實驗的大學生。
+  - **任務**：你將進行以下實驗，請根據實驗規則做出你的決策，並為此決策寫下一段25-45字的理由說明該決策背後的想法和使用的資訊。該場實驗規則如下：
+    - **實驗規則**：本實驗共一回合。實驗開始前，電腦將隨機將您與另一位受試者配對進行以下實驗。
+    所有受試者都將獨立在指定的地圖上選擇一個座標為 (X,Y) 的位置(地圖上共有7x7格)。您的報酬將取決於您選擇的位置與您的「目標位置」有多接近，此目標位置將會是相對於「另一位受試者選擇的位置」的某個位置。假設您選擇的位置正好是您的目標位置，那麼您可以得到24元法幣的報酬。但您選擇的位置每偏離您的目標位置一格，您的報酬將會減少1元法幣。也就是說您這回合的報酬將是24元法幣，減去你偏離的方格數目。 
+    舉例來說，若在某一回合中，您這組的目標位置是 (1,4) ，而您這組選擇的位置是 (3,2)，那麼您的報酬將是： 24 - |3-1| - |2-4| = 20
+    請注意：您這組的目標位置可能不在地圖內，因此您不一定可以得到24元法幣的報酬。 
+  - **回覆格式**：請回覆你的決策以及你做出此決策的理由。你的回覆應依照以下格式：
+  我的決策：[x] 
+  決策理由：[...]
