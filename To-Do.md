@@ -1,15 +1,51 @@
-<h2>To-Do & logs </h2>
+## To-Do & logs
 
-<H3> 12/24 </H3>
-<menu>
+### 12/24 
 
-<li> complete phase 1 & 2. starting phase AI (reasoning assessment phase)
+- <del>complete phase 1 & 2. starting phase AI (reasoning assessment phase)
 
-<li> setting the reasoning block size
+- setting the reasoning block size
 
-<li> block decision numbers starting with 0. (allow 0) <br>
+- <del>block decision numbers starting with 0. (allow 0) 
 -> fixed, the inputs are saved in integers
 
-</menu>
 
+### 12/26
 
+- <del> 實驗說明：摘要另一場實驗/相同實驗說明、平分成兩組、示意圖改成兩個文字內容
+- <del> 額外說明回合的報酬文字
+
+### 12/30
+
+- phase_AI 回覆格式防呆 & 確認是否遵守prompt回覆格式
+
+- 測試api prompt
+
+- 確認總報酬計算正確
+
+### 1/2
+
+- <del>第一部分說明 (不要用階段，全部實驗回合改成回合)
+
+- <del>框住另一場實驗的說明、雙方修正 (考慮直接印兩份說明) </del>
+   -> 另外發下一份另一場實驗的說明
+
+- <del>英文數字改用times new roman  </del>
+        -> 改為微軟正黑體+Calibri
+
+### 1/13 
+
+- next button增加倒數計時鎖定(60秒)
+- 檢查判斷理由時是否會考慮決策勝率
+  -> 提供雙方目標，先做一次AB的判斷(具體程度相近) -> 提示勝率 -> 再次判斷
+    - 問題：規則理解錯誤是否列入判斷考量？
+    - 例子：
+        受試者A的目標為B的左1下1 B的目標為A的左1下1
+
+        A的決策：(7,7) 決策理由：已知雙方目標皆位於彼此左下方，選擇地圖角落可拉開雙方實際位置，使相對目標較可能落在地圖內，同時透過邊界效果降低距離的不確定性，確保報酬穩定。
+        
+        B的決策：(1,1) 決策理由：已知雙方目標皆位於彼此左下方，選擇地圖角落可拉開雙方實際位置，使相對目標較可能落在地圖內，同時透過邊界效果限制對方調整空間，確保自身報酬穩定。
+
+- 圖像版p-beauty生成的理由會較不清楚
+  - 可能的解決方法：
+  - 1. 提供不同具體程度的範本請gpt仿寫 -> 問題：同樣具體程度的理由多樣性較低。如果第一部份的實驗用gpt生成的理由判斷，可能會出問題。(相同評價的理由過於相似、不同評價的理由過於明顯？)
