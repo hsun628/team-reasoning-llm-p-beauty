@@ -2,10 +2,11 @@
 
 from otree.api import *
 from settings import debug
+from settings import num_participant
 
 class C(BaseConstants):
     NAME_IN_URL = 'phase2'
-    PLAYERS_PER_GROUP = 2 if debug else 6
+    PLAYERS_PER_GROUP = 2 if debug else (0.5*num_participant)
     NUM_ROUNDS = 3 if debug else 10
     Winner_Reward = 100
     reasoning_rounds = [1, 3, 5] if debug else [1, 5, 10]
@@ -29,7 +30,7 @@ def set_payoffs(subsession: Subsession): # because we use wait_for_all_groups
         all_decisions = [p.decision for p in group.get_players()]
         
         group.mean_number = sum(all_decisions) / C.PLAYERS_PER_GROUP
-        group.target_number = 2/3 * group.mean_number
+        group.target_number = 0.7 * group.mean_number
 
         for p in group.get_players():
             p.distance = abs(p.decision - group.target_number)
@@ -76,6 +77,12 @@ class InstructionPage(Page):
     @staticmethod
     def is_displayed(player):
         return player.round_number == 1
+    
+    def vars_for_template(player):
+        num_player_per_group = C.PLAYERS_PER_GROUP
+        return {
+            "group_size": int(num_player_per_group)
+        }
 
 class Phase2StartWaitPage(WaitPage):
     title_text = "請等待其他受試者完成準備"

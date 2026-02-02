@@ -7,7 +7,7 @@ BASE_DIR = Path(__file__).resolve().parent
 # DEBUG MODE
 
 debug = True
-
+num_participant = 12   # 12 or 14 or 16
 
 # -------------------
 # SESSION CONFIGS
@@ -16,7 +16,7 @@ SESSION_CONFIGS = [
     dict(
         name = 'Experiment_stage1',
         display_name = "實驗第一階段",
-        num_demo_participants = 4 if debug else 12,
+        num_demo_participants = 4 if debug else num_participant,
         app_sequence = ['phase1', 'phase2', 'phase_AI'],
     ),
 ]

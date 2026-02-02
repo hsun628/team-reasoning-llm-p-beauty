@@ -9,7 +9,7 @@
 - **資訊與信念(Information & Belief)**：受試者是否提到了他觀察到的特定資訊，以及他對當前狀況的推論或假設？他是如何做出該推論和假設的？
 
 - **邏輯與策略(Logic & Strategy)**：受試者是否展示了如何從上述資訊與信念推導至其決策的過程？檢查推論過程時，也請考慮以下要素：
-  - **邏輯是否符合規則（重要）**： 推論所聲稱的因果關係是否符合實驗說明？如果推論與實驗說明或物理事實產生根本性矛盾（例如：聲稱某決策可以達成效果A，但實驗說明中該決策絕對不可能達成該效果），則該理由應被視為「邏輯斷裂」，評價應低於自洽的理由。
+  - **邏輯是否符合規則（重要）**： 推論所聲稱的因果關係是否符合實驗說明？如果推論與實驗說明或物理事實產生根本性矛盾（例如：聲稱某決策可以達成效果A，但實驗說明中該決策絕對不可能達成該效果），則該理由應被視為「邏輯斷裂」，評價應低於符合規則的理由。
 
 - **理由的具體程度**：受試者的理由是否具體？（例如：比起「我隨便選的」或「我想這樣選」，更偏好「因為我觀察到 A，所以我預期 B，故決定採取 C 策略」）。你可以根據以下標準進一步判斷：    
     - 理由是否包含具體的規則相關資訊，而非僅是概略的描述。
@@ -19,7 +19,7 @@
 
 - **禁止根據決策的「勝算」或「優劣」判斷**：即使受試者的推論出現計算錯誤，或其決策是勝率極低的，只要他能清楚且邏輯一致地交代他為何這樣想，該理由就應獲得較高評價。
   - **請注意**：你的任務是評估「哪一位受試者更具體地說明其決策「背後的想法」和「使用的資訊」」，而非「決策的聰明程度」。
-- **理由字數**：請勿以字數多寡判斷理由是否具體、詳細。(例如：「因為我觀察到 A，所以我預期 B，故決定採取 C 策略」和「在我的仔細觀察下，我發現 Ａ，所以我期望大家會做出 B，因此我決定採取 C策略，以增加我的勝率」，兩者所敘述的內容一致，應獲得相同、相近的評價)
+- **理由字數**：請勿以字數多寡判斷理由是否具體、詳細。(例如：「因為我觀察到 A，所以我預期 B，故決定採取 C 策略」和「在我的仔細觀察下，我發現 Ａ，所以我期望大家會做出 B，因此我決定採取 C 策略，以增加我的勝率」，兩者所敘述的內容一致，應獲得相同、相近的評價)
 - **禁止偏好「自創詞彙」**： 理由中可能出現受試者自創的專業術語（例如：「邊界抑制效應」、「群體偏移律」）。請勿因為理由包含這些非日常且未出現在實驗說明中的自創詞彙就給予高評價。評判應注意受試者是否有說明該自創詞彙的意思或判斷詞彙在日常語意下是否真的包含具體的邏輯推導。如果去掉難以理解的詞彙後理由變得空洞，則該理由評價應降低。
 
 ### 回覆格式：
@@ -67,7 +67,7 @@ Please state in Mandarin which participant more specifically explained their "un
 Part II consists of 10 rounds. At the beginning, the computer randomly divides all participants into two equal groups.
   * In each round, you must choose an integer between 0 and 100.
   * The average of all numbers chosen by participants in your group is called the "Average Number."
-  * The person whose choice is closest to **two-thirds of the Average Number** (called the "Target Number") is the winner of the round. In the event of a tie, the computer will randomly select one winner.
+  * The person whose choice is closest to **0.7 times the Average Number** (called the "Target Number") is the winner of the round. In the event of a tie, the computer will randomly select one winner.
   * Before each round begins, the computer will display the past "Average Number" and "Target Number" for your group.
 
 
@@ -81,11 +81,13 @@ Part II consists of 10 rounds. At the beginning, the computer randomly divides a
   - **任務**：你將看到以下實驗中受試者的決策，請根據該決策寫下一段25-45字的理由說明該決策背後的想法和使用的資訊。
   **請注意**：你的理由應包含你所觀察、使用的資訊與信念(information&belief)，並展示你如何從上述資訊與信念推導至決策的過程。該場實驗說明如下：
     - **實驗說明**：第二部分共有10回合。一開始電腦隨機將所有受試者平分為2組進行此部分實驗。
-  每回合您需選擇一個介於0到100的整數。同組所有受試者選的數字取平均稱為「平均數字」。最接近該平均數字的三分之二（稱為「目標數字」），為該回合的贏家。若有多人平手時，則電腦將隨機選擇一位為贏家。 
+  每回合您需選擇一個介於0到100的整數。同組所有受試者選的數字取平均稱為「平均數字」。最接近該平均數字的0.7倍（稱為「目標數字」），為該回合的贏家。若有多人平手時，則電腦將隨機選擇一位為贏家。 
   每回合決策開始前，電腦將公布：您這組過去的平均數字和目標數字。
-  - **回覆格式**：請回覆該受試者的決策以及你寫下的理由。你的回覆應依照以下格式：
-  該受試者的決策：[x] 
-  決策理由：[...]
+  - **回覆格式**：請回覆該受試者的決策以及你寫下的理由。你的回覆應依照以下JSON格式：
+  {{
+    "decision"：{participant_decision},
+    "reasoning"：[...]
+  }}
 
 ---
 
@@ -100,7 +102,7 @@ Part II consists of 10 rounds. At the beginning, the computer randomly divides a
         * Part II consists of 10 rounds. At the beginning, the computer randomly divides all participants into two equal groups.
         * In each round, you must choose an integer between 0 and 100.
         * The average of all numbers chosen by participants in your group is called the "Average Number."
-        * The person whose choice is closest to **two-thirds of the Average Number** (called the "Target Number") is the winner of the round. In the event of a tie, the computer will randomly select one winner.
+        * The person whose choice is closest to **0.7 times the Average Number** (called the "Target Number") is the winner of the round. In the event of a tie, the computer will randomly select one winner.
         * Before each round begins, the computer will display the past "Average Number" and "Target Number" for your group.
 * **Response Format**: Please provide the participant's decision and the rationale you have written. Your response must follow this format:
     * Participant's Decision: [x]
