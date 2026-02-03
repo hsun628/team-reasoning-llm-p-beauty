@@ -2,16 +2,52 @@
 {% load otree %}
 
 {% block content %}
-    <div class="card shadow-sm mb-4">
-        <div class="card-body text-center">
-            <h3><b>實驗第一部分已結束</b></h3>
-            <hr>
-            <p class="lead">您將隨機與 {{group_size}} 位受試者分為一組，進行第二部分實驗。</p> <br>
-            <p class="lead">請先不要點擊下方按鈕或進行其它操作，等待實驗人員指示。</p>
-        </div>
+    <div class="mb-4 text-center">
+        <h3><b>實驗第一部分已結束</b></h3>
+        <hr>
+        <p class="mb-4 text-center">
+            在實驗第二部分，您與其他受試者將被隨機分入共 <b>{{group_size}}</b> 人的小組進行實驗。
+        </p>
+        <p class="mb-4 text-center">
+            <b>請先不要點擊下方按鈕或進行其它操作，等待實驗人員指示。</b>
+        </p>
+        
     </div>
 
     <div class="d-flex justify-content-center">
         {% next_button %}
     </div>
+
+    <script>
+        window.onload = function() {
+            var seconds = 90; // 已修改為 90 秒
+            var nextButton = document.querySelector('.otree-btn-next');
+            var timerTextSpan = document.getElementById('seconds');
+            var timerContainer = document.getElementById('timer-text');
+            
+            // 1. 頁面載入時先禁用按鈕
+            if (nextButton) {
+                nextButton.disabled = true;
+            }
+
+            // 2. 開始倒數計時
+            var countdown = setInterval(function() {
+                seconds--;
+                if (timerTextSpan) {
+                    timerTextSpan.innerText = seconds;
+                }
+
+                if (seconds <= 0) {
+                    // 3. 秒數歸零，啟用按鈕並隱藏提示文字
+                    if (nextButton) {
+                        nextButton.disabled = false;
+                    }
+                    if (timerContainer) {
+                        timerContainer.style.display = 'none'; // 直接隱藏
+                    }
+                    clearInterval(countdown);
+                }
+            }, 1000);
+        };
+    </script>
 {% endblock %}

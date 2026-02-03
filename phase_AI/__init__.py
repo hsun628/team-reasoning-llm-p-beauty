@@ -55,12 +55,12 @@ def gpt_generate(participant_decision):
             model = model_used,
             messages = [
                 {"role": "system", "content": generate_prompt},
-                {"role": "user", "content": f"Based on that decision: {participant_decision}, write a 25–45 word reasoning (in Traditional Chinese) explaining the underlying thoughts and the information used for that choice. Your response must strictly follow the specified JSON format.
-                "}
+                {"role": "user", "content": f"""Based on that decision: {participant_decision}, write a 25–45 word reasoning (in Traditional Chinese) explaining the underlying thoughts and the information used for that choice. Your response must strictly follow the specified JSON format.
+                """}
                 ],
             response_format = {"type" : "json_object"},
-            temperature = 0.7,
-            max_tokens = 300  # lower value gives more stable response (0-2)
+            temperature = 0.7,   # lower value gives more stable response (0-2)
+            max_tokens = 300  
         )
 
         generate_result = response.choices[0].message.content
@@ -74,7 +74,7 @@ def gpt_generate(participant_decision):
     
 ########################################################################################################################
 
-def gpt_judge(reasoning_a, reasoing_b):
+def gpt_judge(reasoning_a, reasoning_b):
     reasons = [("A", reasoning_a), ("B", reasoning_b)]
     random.shuffle(reasons)
     
@@ -136,7 +136,7 @@ def gpt_judge(reasoning_a, reasoing_b):
         model = model_used,
         messages = [
             {"role": "system", "content": judge_prompt},
-            {"role": "user", "content": "Please state (in the following specified JSON format) which reasoning more specifically explained the "underlying thoughts" and "information used." (If the two are extremely close, you may declare a tie). Your response must strictly follow the specified JSON format."}],
+            {"role": "user", "content": f"""Please state (in the following specified JSON format) which reasoning more specifically explained the "underlying thoughts" and "information used." (If the two are extremely close, you may declare a tie). Your response must strictly follow the specified JSON format."""}],
         response_format = {"type" : "json_object"},
         temperature = 0,   # test
         max_tokens = 500
@@ -196,7 +196,7 @@ class Results(Page):
             extra_data.append({
                 'round': p.round_number,
                 'is_luckywinner': "是" if is_luckywinner else "否",
-                'assessment': "你的理由較清楚" if p.winner_type == "Human" else "生成的理由較清楚",
+                'assessment': "您的理由較清楚" if p.winner_type == "Human" else "生成的理由較清楚",
             })
             
         return {

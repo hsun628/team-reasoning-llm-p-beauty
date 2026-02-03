@@ -131,3 +131,5 @@ To-Do:
 - 報酬結算頁面
 - phase_AI:
   - phase_2決策理由放入phase_AI和after_questionaire
+- qualtrics
+- 實驗sop
