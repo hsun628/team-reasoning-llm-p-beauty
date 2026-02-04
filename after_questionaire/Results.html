@@ -7,13 +7,21 @@
 
     <div style="text-align: center; margin: 20px;">
         {% if player.prediction == 'A' %}
+            <p class = "mb-4"><b>理由 A</b></p>
             <div class="result-box">
-                <img src="{{ static 'reason1.PNG' }}" style="width: 300px; border: 5px solid #007bff; border-radius: 10px;">
+                <img src="{{ static 'reason1.PNG' }}" style="width: 300px; border: 3px solid #007bff; border-radius: 10px;">
             </div>
         {% elif player.prediction == 'B' %}
+            <p class = "mb-4"><b>理由 B</b></p>
             <div class="result-box">
-                <img src="{{ static 'reason2.PNG' }}" style="width: 300px; border: 5px solid #007bff; border-radius: 10px;">
+                <img src="{{ static 'reason2.PNG' }}" style="width: 300px; border: 3px solid #007bff; border-radius: 10px;">
             </div>
+        {%elif player.prediction == 'Tie' %}
+            <div class="result-box d-flex justify-content-center">
+                <div class="btn btn-outline-secondary btn-choice" style="cursor: default; opacity: 1; pointer-events: none; min-width: 120px; padding: 12px 20px; font-weight: bold; border-width: 2px;">
+                兩者平手
+            </div>
+        </div>
         {% endif %}
     </div>
 

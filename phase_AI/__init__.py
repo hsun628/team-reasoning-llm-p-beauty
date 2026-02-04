@@ -183,6 +183,11 @@ class Player(BasePlayer):
 
 # pages
 
+class wait_api(WaitPage):
+    title_text = "獨立的ChatGPT將比較您在每個額外說明回合寫下的理由和AI生成的理由"
+
+    wait_for_all_groups = True
+
 class Results(Page):
     @staticmethod
     def vars_for_template(player):
@@ -196,21 +201,36 @@ class Results(Page):
             extra_data.append({
                 'round': p.round_number,
                 'is_luckywinner': "是" if is_luckywinner else "否",
-                'assessment': "您的理由較清楚" if p.winner_type == "Human" else "生成的理由較清楚",
+                'assessment': "判斷結果：您的理由較好" if p.winner_type == "Human" else "判斷結果：AI生成的理由較好",
             })
             
         return {
             'extra_data': extra_data
         }
+    
+    def after_all_players_arrive(group):
+        for p in group.get.players():
+            reason_history = []
+            
+            for r in C.reasoning_rounds:
+                p_in_r = p.in_round(r)
+                reason_history.append({
+                    "round": r,
+                    "reason": p_in_r.reason,
+                    "gpt": p_in_r.gpt_reason
+                })
+
+            p.participant.vars["reason_history"] = reason_history
 
 class payoff_WaitPage(WaitPage):
-    title_text = "請等待其他受試者確認此階段實驗報酬"
+    title_text = "請等待其他受試者確認此部分實驗報酬"
 
     wait_for_all_groups = True
 
     after_all_players_arrive = 'set_payoffs'
 
 page_sequence = [
+    wait_api,
     Results,
     payoff_WaitPage
     ]

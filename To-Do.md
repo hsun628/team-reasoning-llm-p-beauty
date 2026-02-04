@@ -133,3 +133,7 @@ To-Do:
   - phase_2決策理由放入phase_AI和after_questionaire
 - qualtrics
 - 實驗sop
+
+2/4
+
+- 實驗說明加入理由範例

@@ -4,12 +4,14 @@ from otree.api import *
 from settings import debug
 from settings import num_participant
 
+
 class C(BaseConstants):
-    NAME_IN_URL = 'after_questionaire'
-    PLAYERS_PER_GROUP = 4 if debug else (0.5*num_participant) # wait for all 12 participants
+    NAME_IN_URL = 'phase1'
+    PLAYERS_PER_GROUP = 4 if debug else num_participant # wait for all 12 participants
     NUM_ROUNDS = 1 if debug else 3
-    Correct_Prediction = ["A", "B", "A"] # predefined correct predictions (may be randomized)
+    Correct_Prediction = ["A", "B", "Tie"] # predefined correct predictions (may be randomized)
     Prediction_Reward = 50
+    reasoning_rounds = [1, 3, 5] if debug else [1, 5, 10]
 
 class Subsession(BaseSubsession):
     pass
@@ -28,7 +30,7 @@ def calculate_results(self):
     
 class Player(BasePlayer):  
     prediction = models.StringField(
-        choices = ["A", "B"],
+        choices = ["A", "Tie", "B"],
     )
 
 
@@ -37,13 +39,27 @@ class Player(BasePlayer):
 # pages
 
 from otree.api import *
+import random
 
-class welcome(Page):
+class InstructionPage(Page):
     @staticmethod
     def is_displayed(player):
         return player.round_number == 1
     
-class Phase1StartWaitPage(WaitPage):
+    def vars_for_template(player):
+        all_players = player.subsession.get_players()
+
+        other_player = random.choice(all_players)   # your own reasoning may be drawn
+
+        history = other_player.participant.vars.get("reason_history",[])
+
+        return {
+            "target_id": other_player.id_in_subsession,
+            "reason_history": history
+        }
+
+
+class questionaireStartWaitPage(WaitPage):
     title_text = "請等待其他受試者完成準備"
 
     wait_for_all_groups = True
@@ -56,26 +72,19 @@ class Prediction(Page):
     form_model = 'player'
     form_fields = ['prediction']
 
-class Prediction(Page):
-    form_model = 'player'
-    form_fields = ['prediction']
-
 class PredictionWaitPage(WaitPage):
     title_text = "請等待其他受試者完成預測"
     
     after_all_players_arrive = 'calculate_results'
 
 class Results(Page):
-    pass
+    title_text = "感謝您參加本實驗，請確認您的報酬金額。"
 
-class ResultsWaitPage(WaitPage):
-    title_text = "請等待其他受試者確認結果"
 
 page_sequence = [
-    welcome,
-    Phase1StartWaitPage,
+    InstructionPage,
+    questionaireStartWaitPage,
     Prediction,
     PredictionWaitPage,
     Results,
-    ResultsWaitPage
 ]

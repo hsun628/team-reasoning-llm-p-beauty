@@ -2,12 +2,13 @@
 
 from otree.api import *
 from settings import debug
+from settings import num_participant
 
 class C(BaseConstants):
     NAME_IN_URL = 'phase1'
-    PLAYERS_PER_GROUP = 4 if debug else 12 # wait for all 12 participants
+    PLAYERS_PER_GROUP = 4 if debug else num_participant # wait for all 12 participants
     NUM_ROUNDS = 1 if debug else 3
-    Correct_Prediction = ["A", "B", "A"] # predefined correct predictions (may be randomized)
+    Correct_Prediction = ["A", "B", "Tie"] # predefined correct predictions (may be randomized)
     Prediction_Reward = 50
 
 class Subsession(BaseSubsession):
@@ -27,7 +28,7 @@ def calculate_results(self):
     
 class Player(BasePlayer):  
     prediction = models.StringField(
-        choices = ["A", "B"],
+        choices = ["A", "Tie", "B"],
     )
 
 
@@ -50,10 +51,6 @@ class Phase1StartWaitPage(WaitPage):
     @staticmethod
     def is_displayed(player):
         return player.round_number == 1
-
-class Prediction(Page):
-    form_model = 'player'
-    form_fields = ['prediction']
 
 class Prediction(Page):
     form_model = 'player'

@@ -14,15 +14,15 @@ num_participant = 12   # 12 or 14 or 16
 # -------------------
 SESSION_CONFIGS = [
     dict(
-        name = 'Experiment_stage1',
-        display_name = "實驗第一階段",
+        name = 'Experiment_team_reasoning_LLM',
+        display_name = "team_reasoning_LLM",
         num_demo_participants = 4 if debug else num_participant,
-        app_sequence = ['phase1', 'phase2', 'phase_AI'],
+        app_sequence = ['phase1', 'phase2', 'phase_AI', 'after_questionaire'],
     ),
 ]
 
 SESSION_CONFIG_DEFAULTS = dict(
-    display_name = "第一階段",
+    display_name = "team_reasoning_LLM_p_beauty",
     real_world_currency_per_point = 1.00,
     participation_fee = 150.00,
     doc="",

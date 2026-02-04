@@ -63,7 +63,8 @@ class Player(BasePlayer):
     )
     reason = models.LongStringField(
         label = "請說明您選擇該數字的理由：",
-        blank = False,
+        initial = "",
+        blank = True,
     )
     is_luckywinner = models.BooleanField()
 
