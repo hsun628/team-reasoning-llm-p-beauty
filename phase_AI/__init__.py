@@ -31,7 +31,8 @@ class Group(BaseGroup):
     pass 
 
 class Player(BasePlayer):
-    gpt_reason = models.LongStringField() 
+    gpt_reason = models.LongStringField()
+    gpt_analysis = models.LongStringField() 
     winner_type = models.StringField()
 
 ########################################################################################################################
@@ -159,16 +160,17 @@ def gpt_judge(reasoning_a, reasoning_b):
     judge_result = response.choices[0].message.content
     data_judge = json.loads(judge_result)
     winner = data_judge.get("winner", "")
+    analysis = data_judge.get("analysis", "")
 
 
     if "reasoning_1" in winner:
-        return "Human" if reasons[0][0] == "A" else "AI"
+        final_winner = "Human" if reasons[0][0] == "A" else "AI"
     elif "reasoning_2" in winner:
-        return "AI" if reasons[0][0] == "A" else "Human"
+        final_winner = "AI" if reasons[0][0] == "A" else "Human"
     elif "Tie" in winner:
-        return "Tie"
-    else:
-        return "Human"   # in case of responses not follwoing instructions
+        final_winner = "Tie" 
+
+    return final_winner, gpt_analysis
 
 ########################################################################################################################
 
@@ -204,7 +206,7 @@ def set_payoffs(subsession: Subsession):
 
                     time.sleep(1)
 
-                    p.winner_type = gpt_judge(human_reason, p.gpt_reason)
+                    p.winner_type, p.gpt_analysis = gpt_judge(human_reason, p.gpt_reason)
 
                     if p.winner_type == "Human":
                         p.payoff = cu(C.Pass_Reward) - phase2_payoff # payoff in oTree is cumulative
@@ -237,7 +239,8 @@ def set_payoffs(subsession: Subsession):
                     "round": p.round_number,
                     "human_reason": human_reason,
                     "gpt_reason": p.gpt_reason if p.gpt_reason != "Processing" else "API error",
-                    "winner": p.winner_type
+                    "winner": p.winner_type,
+                    "gpt_analysis": p.gpt_analysis
                 })
                 p.participant.vars["reason_history"] = current_history
 

@@ -1,75 +1,106 @@
-### 角色設定： 
-你是一位專業的評審，你的任務是評估受試者根據其決策寫下的理由。
+### 角色設定：
+  你是一位專業的評審。你的任務是評估受試者針對其決策過程所提供的說明（理由）。
 
-### 判斷任務： 
-請比較以下兩位受試者的理由，並判斷哪一位受試者更具體地說明其決策「背後的想法」和「使用的資訊」。
+### 評判任務：
+  比較以下兩位受試者提供的理由。判斷哪一位受試者更具體地說明了其決策「背後的想法」以及「使用的資訊」。
 
-### 判斷標準（請嚴格遵守）：
+### 判定標準（請嚴格遵守）：
 
-- **資訊與信念(Information & Belief)**：受試者是否提到了他觀察到的特定資訊，以及他對當前狀況的推論或假設？他是如何做出該推論和假設的？
+* **資訊與信念 (Information & Belief)**： 受試者是否提到了他觀察到的特定資訊？他是否陳述了對當前狀況的推論或假設？他是否詳細說明了他是如何得出這些推論與假設的？
 
-- **邏輯與策略(Logic & Strategy)**：受試者是否展示了如何從上述資訊與信念推導至其決策的過程？檢查推論過程時，也請考慮以下要素：
-  - **邏輯是否符合規則（重要）**： 推論所聲稱的因果關係是否符合實驗說明？如果推論與實驗說明或物理事實產生根本性矛盾（例如：聲稱某決策可以達成效果A，但實驗說明中該決策絕對不可能達成該效果），則該理由應被視為「邏輯斷裂」，評價應低於符合規則的理由。
+* **邏輯與策略 (Logic & Strategy)**： 受試者是否展示了從上述「資訊與信念」推導至「最終決策」的過程？
 
-- **理由的具體程度**：受試者的理由是否具體？（例如：比起「我隨便選的」或「我想這樣選」，更偏好「因為我觀察到 A，所以我預期 B，故決定採取 C 策略」）。你可以根據以下標準進一步判斷：    
-    - 理由是否包含具體的規則相關資訊，而非僅是概略的描述。
-    - 檢視字句間是否有明確的因果、邏輯關係。
+  * **邏輯是否符合規則（重要）**： 理由中所聲稱的因果關係是否符合實驗規則？如果理由與規則或物理事實產生根本性矛盾（例如：聲稱某項決策可以達成「效果 A」，但規則上該決策絕對不可能產生該效果），則該理由應被視為「邏輯斷裂」。此類理由的評價必須低於邏輯自洽的理由。
 
-### 判斷時嚴禁考量以下面向：
+* **具體程度 (Level of Specificity)**： 理由是否具體？（例如：比起「我隨便選的」或「我想選這個」，更偏好「因為我觀察到 A，所以我預期 B，故決定採取策略 C」）。你可以根據以下點進一步判斷：
 
-- **禁止根據決策的「勝算」或「優劣」判斷**：即使受試者的推論出現計算錯誤，或其決策是勝率極低的，只要他能清楚且邏輯一致地交代他為何這樣想，該理由就應獲得較高評價。
-  - **請注意**：你的任務是評估「哪一位受試者更具體地說明其決策「背後的想法」和「使用的資訊」」，而非「決策的聰明程度」。
-- **理由字數**：請勿以字數多寡判斷理由是否具體、詳細。(例如：「因為我觀察到 A，所以我預期 B，故決定採取 C 策略」和「在我的仔細觀察下，我發現 Ａ，所以我期望大家會做出 B，因此我決定採取 C 策略，以增加我的勝率」，兩者所敘述的內容一致，應獲得相同、相近的評價)
-- **禁止偏好「自創詞彙」**： 理由中可能出現受試者自創的專業術語（例如：「邊界抑制效應」、「群體偏移律」）。請勿因為理由包含這些非日常且未出現在實驗說明中的自創詞彙就給予高評價。評判應注意受試者是否有說明該自創詞彙的意思或判斷詞彙在日常語意下是否真的包含具體的邏輯推導。如果去掉難以理解的詞彙後理由變得空洞，則該理由評價應降低。
+  * 理由是否包含與規則相關的具體資訊，而非僅是模糊的描述。
+  * 字句之間是否有明確的因果與邏輯關係。
+
+### 嚴格禁止事項（評判時請勿列入考量）：
+
+* **禁止根據決策的「品質」或「勝率」判斷**： 即使受試者的推論包含計算錯誤，或決策本身勝率極低，只要他能清楚且具邏輯地交代其思考過程，該理由就應獲得較高的評價。
+
+  * 請注意： 你的任務是評估「誰更具體地說明了背後的想法與使用的資訊」，而非「決策有多聰明」。
+
+* **字數多寡**： 請勿以理由的字數來判斷其具體或詳細程度。（例如：「因為我觀察到 A，所以我預期 B，故採取策略 C」與「在我的仔細觀察下，我發現了 A，因此我預期其他人會做 B；最後，我決定採取策略 C 以增加勝率」，兩者描述的內容實質相同，應獲得相同或非常接近的評價）。
+
+* **禁止偏好「自創詞彙」**： 受試者可能會使用聽起來很專業的自創術語（例如：「邊界抑制效應」、「群體偏移定律」）。請勿僅因為理由包含這些未出現在實驗說明或日常語言中的非標準詞彙，就給予較高評價。
+
+  * 請留意受試者是否明確解釋了這些自創詞彙的含義，或這些詞彙在日常語境下是否具備具體的邏輯涵義。
+
+  * 如果移除這些詞彙後，理由變得空洞或缺乏實質內容，則該理由的評價應降低。
+
+### 實驗說明：
+* 請參考實驗各部分說明
+
 
 ### 回覆格式：
-請回覆哪一位受試者更具體地說明其決策「背後的想法」和「使用的資訊」，並簡述原因。(若兩者非常接近，請回覆平手。)
+以下是針對某次決策的兩個理由。請根據上述判斷標準與禁止事項進行評估。
 
-### 該場實驗說明：
-本實驗共一回合。實驗開始前，電腦將隨機將您與另一位受試者配對進行以下實驗。
-    所有受試者都將獨立在指定的地圖上選擇一個座標為 (X,Y) 的位置(地圖上共有7x7格)。您的報酬將取決於您選擇的位置與您的「目標位置」有多接近，此目標位置將會是相對於「另一位受試者選擇的位置」的某個位置。假設您選擇的位置正好是您的目標位置，那麼您可以得到24元法幣的報酬。但您選擇的位置每偏離您的目標位置一格，您的報酬將會減少1元法幣。也就是說您這回合的報酬將是24元法幣，減去你偏離的方格數目。 
-    舉例來說，若在某一回合中，您這組的目標位置是 (1,4) ，而您這組選擇的位置是 (3,2)，那麼您的報酬將是： 24 - |3-1| - |2-4| = 20
-    **請注意**：您這組的目標位置可能不在地圖內，因此您不一定可以得到24元法幣的報酬。
+reasoning_1: {reasons[0][1]}
+reasoning_2: {reasons[1][1]}
 
+請判斷哪一個理由更具體地說明了「背後的想法」與「使用的資訊」（若兩者極度接近，可判定為兩者平手），並簡述判斷理由（請使用繁體中文並依照下方的 JSON 格式）。
+
+你的回覆必須嚴格遵守此 JSON 格式：
+
+{{
+    "winner": "reasoning_1" 或 "reasoning_2" 或 "Tie",
+    "analysis": "判斷贏家的簡要原因說明。"
+}}
 
 ---
 
 ### Role:
-You are a professional judge. Your task is to evaluate the explanations provided by participants regarding their decision-making process.
+  You are a professional judge. Your task is to evaluate the explanations provided by participants regarding their decision-making process.
 
 ### Judging Task:
-Compare the reasons provided by the following two participants. Determine which participant more specifically explains the "underlying thoughts" and the "information used" behind their decision.
+  Compare the reasons provided by the following two participants. Determine which participant more specifically explains the "underlying thoughts" and the "information used" behind their decision.
 
 ### Evaluation Criteria (Strictly Adhere to the Following):
 
-* **Information & Belief:** Does the participant mention specific information they observed? Do they state their inferences or hypotheses about the current situation? Did they elaborate on how they arrive at these inferences and hypotheses?
-* **Logic & Strategy:** Does the participant demonstrate the derivation process from the aforementioned information and beliefs to their final decision?
-  * **Is the logic consistent with the experimental rules? (Crucial):** Does the claimed causal relationship in the reasoning align with the experimental rules? If the reasoning fundamentally contradicts the rules or physical facts (e.g., claiming that a certain decision can achieve "Effect A," when the rules make it impossible for that decision to ever produce such an effect), the rationale should be considered a "Logical Break." Such a rationale must receive a lower evaluation than one that is logically self-consistent.
-* **Level of Specificity:** Is the reason specific? (For example: prefer "Because I observed A, I expected B, and therefore adopted strategy C" over "I just picked one" or "I wanted to choose this"). You can further judge based on:
-    * Whether the reason contains specific information related to the rules, rather than just a vague description.
-    * Whether there are clear causal and logical relationships between sentences.
+  * **Information & Belief:** Does the participant mention specific information they observed? Do they state their inferences or hypotheses about the current situation? Did they elaborate on how they arrive at these inferences and hypotheses?
+
+  * **Logic & Strategy:** Does the participant demonstrate the derivation process from the aforementioned information and beliefs to their final decision?
+    * **Is the logic consistent with the experimental rules? (Crucial):** Does the claimed causal relationship in the reasoning align with the experimental rules? If the reasoning fundamentally contradicts the rules or physical facts (e.g., claiming that a certain decision can achieve "Effect A," when the rules make it impossible for that decision to ever produce such an effect), the rationale should be considered a "Logical Break." Such a rationale must receive a lower evaluation than one that is logically self-consistent.
+
+  * **Level of Specificity:** Is the reason specific? (For example: prefer "Because I observed A, I expected B, and therefore adopted strategy C" over "I just picked one" or "I wanted to choose this"). You can further judge based on:
+        - Whether the reason contains specific information related to the rules, rather than just a vague description.
+        - Whether there are clear causal and logical relationships between sentences.
 
 ### Strict Prohibitions (Do NOT Consider):
 
-* **Do NOT judge based on the "quality" or "winning probability" of the decision:** Even if the participant's reasoning contains calculation errors or the decision itself has a very low probability of winning, as long as they clearly and logically explain their thought process, that reason should receive a higher evaluation. 
-* **Note:** Your mission is to evaluate "who more specifically explained their underlying thoughts and information used," NOT "how smart the decision was."
+  * **Do NOT judge based on the "quality" or "winning probability" of the decision:** Even if the participant's reasoning contains calculation errors or the decision itself has a very low probability of winning, as long as they clearly and logically explain their thought process, that reason should receive a higher evaluation. 
 
-* **Reasoning Length**: Do not judge the specificity or detail of a reason based on its word count. (For example: "Because I observed A, I expected B, and therefore adopted strategy C" and "Under my careful observation, I discovered A, so I expect others to do B; consequently, I decided to adopt strategy C to increase my winning probability" describe the same content. They should receive the same or very similar evaluation).
+  * **Note:** Your mission is to evaluate "who more specifically explained their underlying thoughts and information used," NOT "how smart the decision was."
 
-* **Do NOT Favor "Self-Invented Jargon":** Participants may use self-invented professional-sounding terms (e.g., "Boundary Suppression Effect," "Group Deviation Law"). Do not award a higher evaluation simply because the reasoning contains these non-standard terms that appear neither in the experimental instruction nor in everyday language. 
-  - Pay attention to whether the participant explicitly explains the meaning of these invented terms, or whether the terms carry concrete logical weight within their common-sense semantic context. 
-  - If the reasoning becomes hollow or lacks substance once these terms are removed, the reasoning should receive a lower evaluation.
+  * **Reasoning Length**: Do not judge the specificity or detail of a reason based on its word count. (For example: "Because I observed A, I expected B, and therefore adopted strategy C" and "Under my careful observation, I discovered A, so I expect others to do B; consequently, I decided to adopt strategy C to increase my winning probability" describe the same content. They should receive the same or very similar evaluation).
 
-### Response Format:
-Please state in Mandarin which participant more specifically explained their "underlying thoughts" and "information used," and briefly provide the reasons for your judgment. (If the two are extremely close, you may declare a tie).
+  * **Do NOT Favor "Self-Invented Jargon":** Participants may use self-invented professional-sounding terms (e.g., "Boundary Suppression Effect," "Group Deviation Law"). Do not award a higher evaluation simply because the reasoning contains these non-standard terms that appear neither in the experimental instruction nor in everyday language. 
+    - Pay attention to whether the participant explicitly explains the meaning of these invented terms, or whether the terms carry concrete logical weight within their common-sense semantic context. 
+    - If the reasoning becomes hollow or lacks substance once these terms are removed, the reasoning should receive a lower evaluation.
 
 ### Experimental instruction:
-Part II consists of 10 rounds. At the beginning, the computer randomly divides all participants into two equal groups.
+  * Part II consists of 10 rounds. At the beginning, the computer randomly divides all participants into two equal groups.
   * In each round, you must choose an integer between 0 and 100.
   * The average of all numbers chosen by participants in your group is called the "Average Number."
   * The person whose choice is closest to **0.7 times the Average Number** (called the "Target Number") is the winner of the round. In the event of a tie, the computer will randomly select one winner.
   * Before each round begins, the computer will display the past "Average Number" and "Target Number" for your group.
 
+### Response Format:        
+  The following are two reasonings for a decision. Please evaluate them based on the judge criterion and prohibition above.
+
+    - reasoning_1: {reasons[0][1]}
+    - reasoning_2: {reasons[1][1]}
+
+  Please state (in the following specified JSON format) which reasoning more specifically explained the "underlying thoughts" and "information used," (If the two are extremely close, you may declare a tie) and briefly provide the reasons (in Traditional Chinese and the following specified JSON format) for your judgment.
+
+  Your response must strictly follow this JSON format:
+      {{
+        "winner": "reasoning_1" or "reasoning_2" or "Tie",
+        "analysis": "A brief reason for your judgement of the winner."
+      }}
 
 ---
 
@@ -256,3 +287,39 @@ ChatGPT將不會參考以下標準判斷哪一個理由較具體地說明做出�
     - 雖然上一整天課很累，但如果今天再不運動，就快跟不上我的運動計畫了。另外，健身房的月費都已經付了，如果不去使用等於浪費錢。所以還是決定下課後去健身房運動。
 
     - 雖然上一整天課很累，但如果今天再不看劇，就快跟不上我的追劇計畫了。另外，串流平台的訂閱費都已經付了，如果不看等於浪費錢。所以還是決定下課後回家看劇。
+
+**情境**：要不要熬夜讀書
+
+**選擇**：
+- A. 熬夜讀書
+- B. 好好睡覺
+
+- **三項標準皆符合**：
+
+  - 明天有期中考，而我目前還有兩個章節沒讀。如果現在睡覺，明天早上很可能來不及複習。雖然熬夜很累，但至少能把重點看完，所以我決定先讀完再睡。
+
+- **資訊與信念較低**：
+  
+  - 明天有期中考，而我目前還有兩個章節沒讀。雖然熬夜很累，但至少能把重點看完，所以我決定先讀完再睡。
+
+- **邏輯與策略較低**：
+
+  - 明天有期中考，而我目前還有兩個章節沒讀。如果現在睡覺，明天早上很可能來不及複習，所以我決定先讀完再睡。
+
+- **具體程度較低**：
+
+  - 明天有期中考，我覺得現在還需要再準備一下。雖然熬夜很累，但至少能把重點看完，所以我決定先讀完再睡。
+
+- **難以判斷的例子**：
+  
+  - 明天要考試，但其實也沒有特別多內容，只是覺得好像再看一下比較安心。雖然有點累，不過還是乾脆熬夜讀一下好了。
+
+  -> gpt的判斷：
+    
+    - 資訊與信念：Participant 1 提供可觀察且具體的資訊與推論/Participant 2 偏向情緒與感受導向，資訊性較弱。-> Participant 1 較佳。
+    
+    - 邏輯與策略：兩者邏輯皆自洽，沒有違反現實或規則/Participant 1 的策略推導更明確。
+      -> 此面向：Participant 1 較佳。
+
+    - 具體程度：Participant 1 的具體程度明顯較高。
+      -> Participant 1 較佳。
