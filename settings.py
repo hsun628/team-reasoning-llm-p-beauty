@@ -40,7 +40,7 @@ USE_POINTS = False
 # ADMIN
 # -------------------
 ADMIN_USERNAME = 'admin'
-ADMIN_PASSWORD = 'admin'
+ADMIN_PASSWORD = 'tassel'
 
 # optional HTML for demo page
 DEMO_PAGE_INTRO_HTML = ""
