@@ -15,15 +15,15 @@ num_participant = 12   # 12 or 14 or 16
 # -------------------
 SESSION_CONFIGS = [
     dict(
-        name = 'team-reasoning-llm-p-beauty',
-        display_name = "team-reasoning-llm-p-beauty",
+        name = 'team_reasoning_llm_p_beauty',
+        display_name = "team_reasoning_llm_p_beauty",
         num_demo_participants = 4 if DEBUG else num_participant,
         app_sequence = ['phase1', 'phase2', 'phase_AI', 'after_questionaire'],
     ),
 ]
 
 SESSION_CONFIG_DEFAULTS = dict(
-    display_name = "team-reasoning-llm-p-beauty",
+    display_name = "team_reasoning_llm_p_beauty",
     real_world_currency_per_point = 1.00,
     participation_fee = 150.00,
     doc="",
