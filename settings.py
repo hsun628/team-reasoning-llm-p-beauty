@@ -6,7 +6,7 @@ BASE_DIR = Path(__file__).resolve().parent
 
 # DEBUG MODE
 
-debug = True
+debug = False
 num_participant = 12   # 12 or 14 or 16
 
 # -------------------

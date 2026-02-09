@@ -7,7 +7,7 @@ from settings import num_participant
 
 class C(BaseConstants):
     NAME_IN_URL = 'after_questionaire'
-    PLAYERS_PER_GROUP = 4 if debug else num_participant # wait for all 12 participants
+    PLAYERS_PER_GROUP = 4 if debug else int(num_participant) # wait for all 12 participants
     NUM_ROUNDS = 3 if debug else 10
     Prediction_Reward = 50
     reasoning_rounds = [1, 3] if debug else [1, 5, 10]
@@ -116,12 +116,15 @@ class Prediction(Page):
             reason_a = current_entry.get("human_reason")
             reason_b = current_entry.get("gpt_reason")
 
+        reasoning_round_num = C.reasoning_rounds.index(player.round_number) + 1
+
         return {
             "target_id": player.target_participant_id,
             "reason_a": reason_a,
             "reason_b": reason_b,
             "round_number": player.round_number,
-            "reason_history": current_entry
+            "reason_history": current_entry,
+            "reasoning_round_num": reasoning_round_num
         }
 
 class PredictionWaitPage(WaitPage):
@@ -189,13 +192,16 @@ class Results(Page):
             if not player.is_flipped:
                 is_correct = (real_winner == "AI")
             else:
-                is_correct = (real_winner == "Human")     
+                is_correct = (real_winner == "Human")    
+
+        reasoning_round_num = C.reasoning_rounds.index(player.round_number) + 1 
         
         return {
             "reason_a": reason_a,
             "reason_b": reason_b,
             "real_winner": real_winner,
-            "is_correct": is_correct
+            "is_correct": is_correct,
+            "reasoning_round_num": reasoning_round_num
         }
 
 class Payoff(Page):
