@@ -192,7 +192,9 @@ class Results(Page):
             if not player.is_flipped:
                 is_correct = (real_winner == "AI")
             else:
-                is_correct = (real_winner == "Human")    
+                is_correct = (real_winner == "Human")   
+
+        result_text = "正確" if is_correct else "錯誤" 
 
         reasoning_round_num = C.reasoning_rounds.index(player.round_number) + 1 
         
@@ -201,6 +203,7 @@ class Results(Page):
             "reason_b": reason_b,
             "real_winner": real_winner,
             "is_correct": is_correct,
+            "result_text": result_text,
             "reasoning_round_num": reasoning_round_num
         }
 
