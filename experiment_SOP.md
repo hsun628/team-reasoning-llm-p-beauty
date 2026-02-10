@@ -28,16 +28,49 @@ D槽 -> team_reasoning_p_beauty -> experiment_instruction -> experimental_instru
 
 D槽 -> 公用檔案 -> 紙本資料 -> 空白受試者收據
 
-### step3 deploy???　(heroku步驟)
+### step3 heroku deploy
 
-otree prodserver
+- 固定網址：
+    https://team-reasoning-llm-p-beauty-c2bfda91d091.herokuapp.com/login
 
-### step4 播放投影片
+- username = admin
+  password = tassel
 
+創建新session (確認該場實驗的受試者人數)
+
+### step4 開受試者電腦
+
+複製受試者連結到D:/ztree_host/hsun並創建txt檔(檔名為yymmdd) -> 依照位置順序到每台電腦複製ztree_host裡的txt檔對應連結 -> 在Microsoft Edge開啟連結 -> 按F11開啟全螢幕
+
+### step5 播放投影片
+
+筆電投影 -> 操控投影幕(All on -> 電腦1/VGA1) -> 畫面停在實驗說明
+
+### step6 報到
+
+實驗開始前約5分鐘，確認受試者到場狀況 -> 請他們排隊並準備學生證、身分證(外籍生準備居留證，需拍照紀錄以方便報帳) -> 核對先前列印的受試者名單
+
+人數到齊(或接近到齊)後，依報到順序入座(位子可以隨機) -> 如果人數足夠，可準時開始 & 準時到場但未能參加實驗的受試者可以拿到車馬費100元
+
+如人數不夠但接近，可以電話詢問未到場受試者是否來得及到場(等待約5-10分鐘) or 附近抓人做實驗 
+
+如人數還是不夠，則實驗結束(發放車馬費100元)
+
+詢問是否需要上廁所 -> 拉隔板準備開始
 
 ## 實驗開始
 
-### step1 
+### step1 填寫log紀錄實驗情況
+
+log包含
+
+### step2 發放第一部分實驗說明
+
+### step3 
+
+
+
+### step2 
 
 
 ***
@@ -70,4 +103,10 @@ otree prodserver
 
 1. 取得實驗網址：終端機輸入`heroku open`
 
+    註：admin不可用時，執行`heroku config:set OTREE_AUTH_LEVEL=STUDY -a team-reasoning-llm-p-beauty`
+
+    STUDY(正式實驗)/DEMO
+
 2. 建立session：
+   - username = admin
+   - password = tassel
