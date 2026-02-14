@@ -179,17 +179,22 @@ To-Do:
   - <del>理由填答時間限制 (實驗說明為3分鐘，但目前無強制提交)</del>
     - <del>強制提交的問題：卡輸入法</del>
     - 目前的解決方案：3分鐘跳出提交提醒、實驗人員查看受試者作答狀況，如有受試者已完成作答但未送出，請他提交理由
-  - phase_AI最後一台會跳application error
+  - <del>phase_AI最後一台會跳application error -> 改成受試者分散呼叫api</del>
   - <del>贏家 -> 決策數字贏家(而非決策理由贏家)</del>
+
+  ![alt text](image-3.png)
+
   - gpt太強
   - 受試者理由的最終決策可能和受試者的決策不一致
 
 - after_questionaire
   - results 理由顯示跑掉 (報酬好像也跑掉)
+    - 待測試
 
 - 報酬
-  - 車馬費為新台幣150
-  - qualtrics id
+  - <del>車馬費為新台幣150，需和法幣分開計算</del>
+  - 法幣匯率
+    - alpha test實驗報酬：不含車馬費共3700法幣(平均308法幣)
 
 - data自動下載
 
@@ -197,3 +202,19 @@ To-Do:
 
 - 修改generate prompt
 - gpt_generate提供回合資訊(本回合為第幾回合、過去回合的平均和目標數字)
+
+2/13
+
+- <del>phase_AI一次看到所有回合判斷結果</del>
+
+
+2/14
+
+- <del>phase_AI修改：</del>
+  - <del>一次看到所有回合判斷結果</del>
+  - <del>InstructionPage(Pgae): 受試者個別呼叫api</del>
+  - wait_api(WaitPage): 等待api
+  - <del>Results(Page): 受試者查看判斷結果
+    - 新增功能：顯示受試者第二部分的最終報酬</del>
+
+- after_questionaire/__init__.py clean code

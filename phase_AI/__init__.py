@@ -36,6 +36,66 @@ class Player(BasePlayer):
     gpt_analysis = models.LongStringField() 
     winner_type = models.StringField()
 
+    def gpt_process(self):
+        if "reason_history" not in self.participant.vars:
+            self.participant.vars["reason_history"] = []
+
+        history = []
+        fixed_payoff_sum = cu(0)
+        reason_payoff_sum = cu(0)
+
+        for r in range(1, C.NUM_ROUNDS + 1):
+            if r not in C.reasoning_rounds:
+                phase2_payoff = self.participant.vars.get(f'payoff_{r}', cu(0))
+                fixed_payoff_sum += phase2_payoff
+
+        for r in C.reasoning_rounds:
+            human_reason = self.participant.vars.get(f"reason_{r}", "").strip()
+            human_decision = self.participant.vars.get(f'decision_{r}')
+            is_luckywinner = self.participant.vars.get(f"is_luckywinner_{r}")
+
+            print(f"=====當前處理回合 {r} - 受試者{self.id_in_subsession} =====")
+            print(f"human_decision: {human_decision}")
+            print(f"human_reason: '{human_reason}'")
+
+            if human_reason and human_decision is not None:
+                try:
+                    print(f"受試者{self.id_in_subsession} 正在呼叫API")
+                    time.sleep(0.5)
+                    
+                    gpt_reason = gpt_generate(human_decision)
+                    winner_type, gpt_analysis = gpt_judge(human_reason, gpt_reason)
+                    self.winner_type = winner_type
+
+                    if winner_type in ["Human", "Tie"]:
+                        self.payoff = cu(C.Pass_Reward)
+                        result_text = "您的理由較好"
+                    else:
+                        self.payoff = cu(0)
+                        result_text = "AI生成的理由較好"
+
+                    reason_payoff_sum += self.payoff
+
+                    history.append({
+                        "round": r,
+                        "human_reason": human_reason,
+                        "gpt_reason": gpt_reason,
+                        "winner_type": winner_type,
+                        "is_luckywinner": is_luckywinner,
+                        "result_text": result_text,
+                        "final_payoff": self.payoff
+                    })
+
+                    print(f"API呼叫成功 - winner: {winner_type}")
+
+                except Exception as e:
+                    print(f"Round_{r} API呼叫失敗: {e}")
+
+        total_phase2_payoff = fixed_payoff_sum + reason_payoff_sum
+        self.participant.vars["total_phase2_payoff"] = total_phase2_payoff
+        self.participant.vars["reason_history"] = history
+
+
 ########################################################################################################################
 
 def gpt_generate(participant_decision):
@@ -175,130 +235,137 @@ def gpt_judge(reasoning_a, reasoning_b):
 
 ########################################################################################################################
 
-def set_payoffs(subsession: Subsession):
-    all_players = subsession.get_players()
+#def set_payoffs(subsession: Subsession):
+#    all_players = subsession.get_players()
 
-    for p in all_players:
-        human_reason = ""
-        human_decision = None
-        phase2_payoff = cu(0)
+#    for p in all_players:
+#        human_reason = ""
+#        human_decision = None
+#        phase2_payoff = cu(0)
 
-        if subsession.round_number in C.reasoning_rounds:
-            p.winner_type = "Processing"
-            p.gpt_reason = "Processing"
+#        if subsession.round_number in C.reasoning_rounds:
+#            p.winner_type = "Processing"
+#            p.gpt_reason = "Processing"
 
-            raw_reason = p.participant.vars.get(f"reason_{p.round_number}")
-            human_reason = str(raw_reason).strip() if raw_reason else ""
-            human_decision = p.participant.vars.get(f'decision_{p.round_number}')
-            phase2_payoff = p.participant.vars.get(f'payoff_{p.round_number}', cu(0))
+#            raw_reason = p.participant.vars.get(f"reason_{p.round_number}")
+#            human_reason = str(raw_reason).strip() if raw_reason else ""
+#            human_decision = p.participant.vars.get(f'decision_{p.round_number}')
+#            phase2_payoff = p.participant.vars.get(f'payoff_{p.round_number}', cu(0))
 
-            print(f"=====回合 {p.round_number} - 受試者{p.id_in_subsession} =====")
-            print(f"human_reason: '{human_reason}'")
-            print(f"human_decision: {human_decision}")
+#            print(f"=====回合 {p.round_number} - 受試者{p.id_in_subsession} =====")
+#            print(f"human_decision: {human_decision}")
+#            print(f"human_reason: '{human_reason}'")
            
-            if human_reason and human_decision is not None:
-                wait_time = (p.id_in_subsession - 1)*0.5
-                time.sleep(wait_time)
-                print(f"受試者{p.id_in_subsession} 正在呼叫API")
+#            if human_reason and human_decision is not None:
+#                wait_time = (p.id_in_subsession - 1)*0.5
+#                time.sleep(wait_time)
+#                print(f"受試者{p.id_in_subsession} 正在呼叫API")
 
-                try:
-                    generated_reason = gpt_generate(human_decision)
-                    p.gpt_reason = str(generated_reason).strip()
+#                try:
+#                    generated_reason = gpt_generate(human_decision)
+#                    p.gpt_reason = str(generated_reason).strip()
 
-                    time.sleep(1)
+#                    time.sleep(1)
 
-                    p.winner_type, p.gpt_analysis = gpt_judge(human_reason, p.gpt_reason)
+#                    p.winner_type, p.gpt_analysis = gpt_judge(human_reason, p.gpt_reason)
 
-                    if p.winner_type == "Human":
-                        p.payoff = cu(C.Pass_Reward) - phase2_payoff # payoff in oTree is cumulative
-                    else:
-                        p.payoff = - phase2_payoff
-                    print(f"API呼叫完成 - winner: {p.winner_type}")
-                except Exception as e:
-                    print(f"API呼叫失敗: {e}")
-                    p.gpt_reason = "API error"
-                    p.winner_type = "Error"
-                    p.payoff = phase2_payoff
-            else:
-                p.gpt_reason = "No data"
-                p.winner_type = "No data"
-                p.payoff = phase2_payoff
-        else:
-            print(f"-回合{p.round_number} 非額外說明回合")
-            p.winner_type = ""
-            p.gpt_reason = ""
-            p.payoff = cu(0)
+#                    if p.winner_type == "Human":
+#                        p.payoff = cu(C.Pass_Reward) - phase2_payoff # payoff in oTree is cumulative
+#                    else:
+#                        p.payoff = - phase2_payoff
+#                    print(f"API呼叫完成 - winner: {p.winner_type}")
+#                except Exception as e:
+#                    print(f"API呼叫失敗: {e}")
+#                    p.gpt_reason = "API error"
+#                    p.winner_type = "Error"
+#                    p.payoff = phase2_payoff
+#            else:
+#                p.gpt_reason = "No data"
+#                p.winner_type = "No data"
+#                p.payoff = phase2_payoff
+#        else:
+#            print(f"-回合{p.round_number} 非額外說明回合")
+#            p.winner_type = ""
+#            p.gpt_reason = ""
+#            p.payoff = cu(0)
 
-        if p.round_number == 1:
-            p.participant.vars["reason_history"] = []
+#        if p.round_number == 1:
+#            p.participant.vars["reason_history"] = []
 
-        if p.round_number in C.reasoning_rounds:
-            current_history = p.participant.vars.get("reason_history", [])
+#        if p.round_number in C.reasoning_rounds:
+#            current_history = p.participant.vars.get("reason_history", [])
 
-            if not any(d.get("round") == p.round_number for d in current_history):
-                current_history.append({
-                    "round": p.round_number,
-                    "human_reason": human_reason,
-                    "gpt_reason": p.gpt_reason if p.gpt_reason != "Processing" else "API error",
-                    "winner": p.winner_type,
-                    "gpt_analysis": p.gpt_analysis
-                })
-        else:
-            if not any(d.get("round") == p.round_number for d in current_history):
-                current_history.append({
-                    "round": p.round_number,
-                    "human_reason": "",
-                    "gpt_reason": "",
-                    "winner": None,
-                    "gpt_analysis": ""
-                    })
+#            if not any(d.get("round") == p.round_number for d in current_history):
+#                current_history.append({
+#                    "round": p.round_number,
+#                    "human_reason": human_reason,
+#                    "gpt_reason": p.gpt_reason if p.gpt_reason != "Processing" else "API error",
+#                    "winner": p.winner_type,
+#                    "gpt_analysis": p.gpt_analysis
+#                })
+#        else:
+#            if not any(d.get("round") == p.round_number for d in current_history):
+#                current_history.append({
+#                    "round": p.round_number,
+#                    "human_reason": "",
+#                    "gpt_reason": "",
+#                    "winner": None,
+#                    "gpt_analysis": ""
+#                    })
 
-        p.participant.vars["reason_history"] = current_history
+#        p.participant.vars["reason_history"] = current_history
 
 ########################################################################################################################
 
 # pages
 
 class InstructionPage(Page):
+    @staticmethod
+    def before_next_page(player, timeout_happened):
+        player.gpt_process()
+
+    @staticmethod
     def is_displayed(player):
         return player.round_number == 1 
 
 class wait_api(WaitPage):
-    title_text = "請等待獨立的ChatGPT判定理由"
+    title_text = "請等待AI和獨立的ChatGPT生成、判斷理由"
 
-    wait_for_all_groups = True
-
-    after_all_players_arrive = 'set_payoffs'
+    wait_for_all_groups = False
 
     @staticmethod
     def is_displayed(player):
-        return player.round_number in C.reasoning_rounds
+        return player.round_number == 1
 
 class Results(Page):
     @staticmethod
     def is_displayed(player):
-        return player.round_number in C.reasoning_rounds
+        return player.round_number == 1
 
     @staticmethod
     def vars_for_template(player):
-        player_history = [p for p in player.in_all_rounds() if p.round_number in C.reasoning_rounds]
-        extra_data = []
+        reason_history = player.participant.vars.get("reason_history", [])
+        total_phase2_payoff = player.participant.vars.get("total_phase2_payoff")
 
-        for p in player_history:
-            is_luckywinner = "False"
-            is_luckywinner = p.participant.vars.get(f'is_luckywinner_{p.round_number}', cu(0)) > 0
-            
-            extra_data.append({
-                'round': p.round_number,
-                'is_luckywinner': "是" if is_luckywinner else "否",
-                'assessment': "您的理由較好" if p.winner_type == "Human" else "AI生成的理由較好",
-                "round_payoff": p.payoff 
-            })
-            
         return {
-            'extra_data': extra_data,
-            "total_payoff": player.participant.payoff
+            "reason_history": reason_history,
+            "total_phase2_payoff": total_phase2_payoff
         }
+
+#        for p in player_history:
+#            is_luckywinner = p.participant.vars.get(f'is_luckywinner_{p.round_number}')
+            
+#            extra_data.append({
+#                'round': p.round_number,
+#                'is_luckywinner': "是" if is_luckywinner else "否",
+#                'result': "您的理由較好" if p.winner_type == "Human" else "AI生成的理由較好",
+#                "round_payoff": p.payoff 
+#            })
+            
+#        return {
+#            'extra_data': extra_data,
+#            "total_payoff": player.participant.payoff
+#        }
     
 #    def after_all_players_arrive(group):
 #        for p in group.get_players():

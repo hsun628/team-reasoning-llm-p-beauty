@@ -11,6 +11,7 @@ class C(BaseConstants):
     NUM_ROUNDS = 3 if DEBUG else 10
     Prediction_Reward = 50
     reasoning_rounds = [1, 3] if DEBUG else [1, 5, 10]
+    exchange_rate = 0.5   # exchange rate for NTD
     participation_fee = 150
 
 class Subsession(BaseSubsession):
@@ -33,7 +34,7 @@ def calculate_results(group:Group):
                 break
         
         if current_entry:
-            real_winner_type = current_entry.get("winner")
+            real_winner_type = current_entry.get("winner_type")
             is_correct = False
 
             if p.prediction == "Tie":
@@ -104,7 +105,7 @@ class Prediction(Page):
             current_entry = {
                 "human_reason": "NaN",
                 "gpt_reason": "NaN",
-                "winner": "NaN"
+                "winner_type": "NaN"
             }
 
         player.is_flipped = random.choice([True, False])
@@ -169,7 +170,7 @@ class Results(Page):
 
                 reason_a = reason_a.strip()
                 reason_b = reason_b.strip()
-                real_winner = current_entry.get("winner")
+                real_winner = current_entry.get("winner_type")
             else:
                 reason_a = "NaN"    
                 reason_b = "NaN"
@@ -212,13 +213,15 @@ class Payoff(Page):
 
     @staticmethod
     def vars_for_template(player):
+        total_payoff_no_participation_fee = player.participant.payoff
         if player.round_number == C.NUM_ROUNDS:
             if not player.participant.vars.get("fee_added"):
-                player.participant.payoff += cu(C.participation_fee)
+                player.participant.payoff = player.participant.payoff*C.exchange_rate + cu(C.participation_fee)
                 player.participant.vars["fee_added"] = True
 
         return {
-            "total_payoff": player.participant.payoff
+            "total_payoff_no_participation_fee": total_payoff_no_participation_fee,
+            "total_NTD_payoff": player.participant.payoff
         }
     
     def is_displayed(player):
